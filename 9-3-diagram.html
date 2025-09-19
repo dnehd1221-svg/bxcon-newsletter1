@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디자인 주체 효과 개념 모델</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            margin: 0;
+            padding: 2em;
+        }
+        .flowchart-container {
+            max-width: 1200px;
+            margin: 2em auto;
+            position: relative;
+            padding-top: 180px; /* 조절 변수 공간 확보 */
+        }
+        .flow-box {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 0.95em;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+        .flow-box .subtitle {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        /* 메인 흐름 */
+        .main-flow {
+            display: flex;
+            align-items: center;
+        }
+        .flow-stage {
+            position: relative; /* 화살표 위치 기준 */
+            flex: 1; /* 모든 스테이지가 동일한 너비를 갖도록 설정 */
+            display: flex;
+            justify-content: center; /* 내부 콘텐츠 가운데 정렬 */
+            align-items: center;
+        }
+        .flow-stage .box-group {
+            border: 2px solid #f0f0f0;
+            border-radius: 16px;
+            padding: 1.5em 1em;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background-color: rgba(248, 249, 250, 0.5);
+        }
+        .box-group-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 0.5em;
+        }
+
+        /* [수정] 화살표 위치 선정 방식 변경 */
+        .arrow {
+            width: 50px;
+            height: 2px;
+            background-color: #333;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(50%, -50%); /* 정확한 중앙 정렬 */
+        }
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: -4px;
+            border: solid #333;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 4px;
+            transform: rotate(-45deg);
+        }
+        .flow-stage:last-child .arrow {
+            display: none;
+        }
+
+
+        /* [수정] 조절 변수 위치 조정 */
+        .moderating-factors {
+            position: absolute;
+            top: 0;
+            left: 25%; /* 첫번째와 두번째 스테이지 사이 */
+            transform: translateX(-50%); /* 정확한 중앙 정렬 */
+            width: 250px;
+            z-index: 10;
+        }
+        .moderating-factors .box-group {
+            border-color: #ccc;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .moderating-arrow {
+            width: 2px;
+            height: 40px;
+            background-color: #333;
+            position: absolute;
+            left: 50%;
+            bottom: -40px;
+            transform: translateX(-50%);
+        }
+        .moderating-arrow::after {
+            content: '';
+            position: absolute;
+            left: -4px;
+            bottom: -2px;
+            border: solid #333;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 4px;
+            transform: rotate(45deg);
+        }
+
+        /* 하단 긴 화살표 */
+        .bottom-line {
+            margin-top: 3em;
+            text-align: center;
+        }
+        .bottom-arrow-wrapper {
+            width: 100%;
+            height: 2px;
+            background-color: #333;
+            position: relative;
+            display: inline-block;
+        }
+        .bottom-arrow-wrapper::before,
+        .bottom-arrow-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #333;
+        }
+        .bottom-arrow-wrapper::before { left: -6px; }
+        .bottom-arrow-wrapper::after { right: -6px; }
+        .bottom-line .subtitle {
+             margin-top: 1em;
+             font-size: 1.1em;
+             color: #333;
+        }
+        
+        /* 모바일 반응형 스타일 */
+        @media (max-width: 992px) {
+            .flowchart-container { padding-top: 0; }
+            .main-flow {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .flow-stage {
+                flex-direction: column;
+                margin-bottom: 20px;
+                padding: 0 10%; /* 좌우 여백을 주어 중앙에 위치한 것처럼 보이게 */
+            }
+            .moderating-factors {
+                position: static;
+                width: auto;
+                margin-bottom: 40px;
+                transform: none;
+            }
+            .arrow {
+                position: static; /* 세로 흐름에서는 static으로 변경 */
+                transform: none; /* transform 해제 */
+                width: 2px;
+                height: 30px;
+                margin: 20px 0;
+            }
+            .arrow::after {
+                right: -4px;
+                top: auto;
+                bottom: -2px;
+                transform: rotate(45deg);
+            }
+            .moderating-arrow { display: none; }
+            .bottom-line { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flowchart-container">
+        <div class="moderating-factors">
+            <div class="box-group">
+                <div class="box-group-title">조절 변수</div>
+                <div class="flow-box">제품 유형 <span class="subtitle">(S1a, S1b)</span></div>
+                <div class="flow-box">인식된 AI 위협 <span class="subtitle">(S1a, S1b)</span></div>
+                <div class="flow-box">인간적 요소 수준 <span class="subtitle">(S2)</span></div>
+                <div class="moderating-arrow"></div>
+            </div>
+        </div>
+
+        <div class="main-flow">
+            <div class="flow-stage">
+                <div class="flow-box" style="padding: 20px 30px;"><strong>디자인 주체</strong><br>(AI vs. 인간)</div>
+                <div class="arrow"></div>
+            </div>
+
+            <div class="flow-stage">
+                <div class="box-group">
+                    <div class="box-group-title">마음 인식</div>
+                    <div class="flow-box">지각된 경험</div>
+                    <div class="flow-box">지각된 행위성</div>
+                </div>
+                <div class="arrow"></div>
+            </div>
+
+            <div class="flow-stage">
+                <div class="flow-box" style="padding: 20px 30px;">인식된<br>디자인 전문성</div>
+                <div class="arrow"></div>
+            </div>
+
+            <div class="flow-stage">
+                <div class="box-group">
+                    <div class="box-group-title">소비자 반응</div>
+                    <div class="flow-box">태도</div>
+                    <div class="flow-box">구매 의도</div>
+                </div>
+                <div class="arrow"></div>
+            </div>
+        </div>
+
+        <div class="bottom-line">
+            <div class="bottom-arrow-wrapper"></div>
+            <div class="subtitle"><strong>디자인 주체 효과</strong> (S1a, S1b)</div>
+        </div>
+    </div>
+
+</body>
+</html>
