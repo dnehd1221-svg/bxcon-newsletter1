@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기대 유형 도표</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 1em;
+        }
+        .chart-wrapper {
+             margin: 0;
+        }
+        .email-safe-chart {
+            font-family: 'Pretendard', sans-serif;
+            width: 100%;
+            border: 1px solid #d0d7de;
+            border-radius: 8px;
+            overflow: hidden;
+            border-collapse: separate; 
+            border-spacing: 0;
+        }
+        .email-safe-chart-column {
+            width: 33.33%;
+            vertical-align: top;
+        }
+        .email-safe-chart-column:not(:last-child) {
+            border-right: 1px solid #d0d7de;
+        }
+        .chart-header { background-color: #f0f6fc; color: #4a90e2; padding: 16px; text-align: center; border-bottom: 1px solid #d0d7de; }
+        .chart-header h2 { margin: 0; font-size: 1.25em; font-weight: bold; }
+        .chart-header span { font-size: 0.9em; color: #555; display: block; margin-top: 4px; }
+        .chart-content { padding: 20px; }
+        .chart-content h3 { font-size: 1em; color: #333; border-left: 4px solid #4a90e2; padding-left: 8px; margin: 0 0 10px 0; }
+        .chart-content p, .chart-content ul { font-size: 0.95em; line-height: 1.7; color: #555; margin: 0; padding: 0; }
+        .chart-content ul { list-style-type: '▪'; padding-left: 25px; margin-top: 15px; }
+        .chart-content li { padding-left: 10px; margin-bottom: 8px; }
+        .chart-content li span { color: #888; font-size: 0.9em; }
+        .separator { border-bottom: 1px solid #e5e5e5; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="chart-wrapper">
+        <table class="email-safe-chart" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="email-safe-chart-column">
+                    <div class="chart-header">
+                        <h2>기술적 기대</h2>
+                        <span>(Technical Expectations)</span>
+                    </div>
+                    <div class="chart-content">
+                        <h3>정의</h3>
+                        <p style="color: #555;">대화형 AI가 제공하는 기능적·성능적 특성에 대한 기대</p>
+                        <div class="separator"></div>
+                        <h3>요소</h3>
+                        <ul>
+                            <li>빠르고 정확한 응답 <span>(accuracy, speed)</span></li>
+                            <li>24시간 가용성 <span>(availability)</span></li>
+                            <li>과거 대화 기억 및 학습 능력 <span>(recall & continuous learning)</span></li>
+                            <li>원활한 통합 <span>(seamlessness)</span>과 효율성<span>(efficiency)</span></li>
+                            <li>설명가능성<span>(explainability)</span>, 자율성<span>(autonomy)</span>, 사용 편의성<span>(ergonomics)</span></li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="email-safe-chart-column">
+                    <div class="chart-header">
+                        <h2>의인화적 기대</h2>
+                        <span>(Anthropomorphic Expectations)</span>
+                    </div>
+                    <div class="chart-content">
+                        <h3>정의</h3>
+                        <p style="color: #555;">AI가 인간과 유사한 특성을 지니길 바라는 기대</p>
+                        <div class="separator"></div>
+                        <h3>요소</h3>
+                        <ul>
+                            <li>음성<span>(voice)</span>, 외형<span>(appearance)</span>, 성격<span>(personality)</span> 등 인간적 특징</li>
+                            <li>일관성과 조화<span>(coherence & equilibrium)</span> → 외형과 행동이 맞아야 함</li>
+                            <li>개성<span>(persona, uniqueness)</span>, 개인맞춤<span>(personalisation)</span></li>
+                            <li>감정적 교류<span>(empathy, social presence)</span> 및 브랜드 정체성과의 일관성</li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="email-safe-chart-column">
+                    <div class="chart-header">
+                        <h2>윤리적 기대</h2>
+                        <span>(Ethical Expectations)</span>
+                    </div>
+                    <div class="chart-content">
+                        <h3>정의</h3>
+                        <p style="color: #555;">대화형 AI가 준수해야 할 도덕적·사회적 책임에 대한 기대</p>
+                        <div class="separator"></div>
+                        <h3>요소</h3>
+                        <ul>
+                            <li>투명성<span>(transparency)</span>: AI의 비인간적 정체성 명확히 알릴 것</li>
+                            <li>프라이버시 및 데이터 보호 <span>(privacy & data governance)</span></li>
+                            <li>공정성 및 차별 방지<span>(fairness, non-discrimination, diversity)</span></li>
+                            <li>책임성<span>(accountability)</span>: 알고리즘 편향, 오류, 조작 가능성 최소화</li>
+                            <li>공익성<span>(public interest)</span>: 사회적 약자 보호, 사회적 가치 창출</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

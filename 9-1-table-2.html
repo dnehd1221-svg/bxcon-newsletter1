@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터 표</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 1em;
+        }
+        .chart-wrapper {
+             margin: 0;
+        }
+        .responsive-table-container { 
+            margin: 0 auto; 
+            width: 100%; 
+            border: 1px solid #d0d7de; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            font-family: 'Pretendard', sans-serif;
+        }
+        .styled-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            font-size: 1em; 
+            color: #333; 
+        }
+        .styled-table th, .styled-table td { 
+            padding: 16px 20px; 
+            border: 1px solid #d0d7de; 
+            text-align: center; 
+            vertical-align: middle; 
+            font-weight: normal; 
+            word-break: keep-all; 
+        }
+        .styled-table thead th { 
+            background-color: #eaf3f9; 
+            color: #005a9c; 
+            border-bottom: 2px solid #005a9c; 
+        }
+        .styled-table tbody th { 
+            background-color: #eaf3f9; 
+        }
+        .styled-table tbody td { 
+            background-color: #ffffff; 
+        }
+        .styled-table tbody tr:nth-of-type(even) td { 
+            background-color: #f6f8fa; 
+        }
+        .styled-table tbody tr:hover td { 
+            background-color: #eef5ff; 
+        }
+        .styled-table td span { 
+            display: block; 
+            font-size: 0.85em; 
+            color: #555; 
+            margin-top: 4px; 
+        }
+        @media (max-width: 768px) {
+            .styled-table th, .styled-table td { padding: 12px 8px; font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-wrapper">
+        <div class="responsive-table-container">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>기대치 유형</th>
+                        <th>전문가 그룹</th>
+                        <th>준전문가 그룹</th>
+                        <th>비전문가 그룹</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>기술적/기능적 특성</th>
+                        <td>높음</td>
+                        <td>중간</td>
+                        <td>중간</td>
+                    </tr>
+                    <tr>
+                        <th>의인화된 특성</th>
+                        <td>낮음<span>(환멸효과)</span></td>
+                        <td>중간<span>(일관성 유지)</span></td>
+                        <td>높음<span>(인간 유사성에 높은 기대)</span></td>
+                    </tr>
+                    <tr>
+                        <th>윤리적 고려 사항</th>
+                        <td>규제, 설명 가능성, 투명성</td>
+                        <td>데이터 투명성, 사회적 기여</td>
+                        <td>개인정보 보호, 정확성</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
