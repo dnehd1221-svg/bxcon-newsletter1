@@ -9,8 +9,9 @@
         body {
             font-family: 'Pretendard', sans-serif;
             margin: 0;
-            padding: 0; /* [수정] 바깥 여백 완전 제거 */
-            background-color: transparent; /* [수정] 바깥 배경 투명하게 */
+            padding: 2em; /* 시각적 확인을 위한 여백, 필요시 0으로 조절 */
+            box-sizing: border-box;
+            background-color: transparent; /* 바깥 배경을 투명하게 처리 */
         }
         .chart-wrapper {
             width: 100%;
@@ -18,8 +19,10 @@
             background-color: #ffffff;
             padding: 40px 20px 20px 20px;
             border-radius: 8px;
-            border: 1px solid #e0e0e0;
-            box-sizing: border-box; /* [추가] 크기 계산 기준 설정 */
+            border: 1px solid #e9e9e9; /* 이미지와 유사한 연한 테두리 */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* 이미지와 유사한 그림자 효과 */
+            box-sizing: border-box;
+            margin: 0 auto; /* [수정] 차트를 화면 중앙에 위치시킴 */
         }
         .bar-chart-main-area {
             height: 250px;
