@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>연구 모형 다이어그램</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --rail-offset: 170px;          /* ← 오른쪽 레일 간격(기존 140에서 +30) */
+    --line:#444; --bg:#fff;        /* 배경 변수도 흰색으로 */
+  }
+  body {
+    margin:0;
+    background:#fff;               /* ← 전체 배경 흰색 */
+    font-family:'Pretendard',sans-serif;
+    display:flex; justify-content:center; align-items:center; min-height:100vh;
+  }
+
+  /* ===== 스테이지(큰 박스) ===== */
+  .diagram {
+    position:relative; width:980px; height:520px;
+    border:1.5px solid var(--line); border-radius:6px; background:#fff;
+    overflow:visible;
+  }
+
+  /* ===== 박스/배지 ===== */
+  .badge, .box {
+    position:absolute; background:#fff; border:1px solid var(--line);
+    border-radius:12px; padding:14px 20px;
+    white-space:nowrap; box-shadow:0 2px 6px rgba(0,0,0,.06);
+  }
+  .badge { font-size:32px; font-weight:700; z-index:2; }
+  .box { font-size:28px; }
+
+  /* 왼쪽 두 박스: 작게 통일 */
+  .box.small{ width:220px; height:160px; font-size:22px; }
+  .sub{ list-style:none; margin:10px 0 0; padding:0; font-size:20px; line-height:1.55;}
+
+  /* === 테두리선 중앙에 정확히 걸치도록 정렬 === */
+  #std{ top:0; left:68%; transform:translate(-50%, -50%); }
+  #cust{ bottom:0; left:68%; transform:translate(-50%, 50%); }
+  #platform{ top:0; left:200px; transform:translateY(-50%); }
+
+  /* 오른쪽 레일(두 상자 중심 x 정렬) — 조금 더 우측으로 이동 */
+  #intent{ top:90px;  left:calc(100% + var(--rail-offset)); transform:translateX(-50%);} 
+  #wom{    bottom:90px;left:calc(100% + var(--rail-offset)); transform:translateX(-50%);} 
+
+  /* 왼쪽 두 박스 위치: 두 박스 사이 중간이 컨테이너 세로 중앙 */
+  #info{  top:80px; left:50px; }
+  #system{top:280px; left:50px; }
+
+  #recommend{ top:230px; left:400px; }
+  #satisfaction{ top:230px; left:670px; }
+
+  /* ===== 선/라벨 ===== */
+  svg.edges{ position:absolute; inset:0; pointer-events:none; overflow:visible; }
+  .edge{ stroke:var(--line); stroke-width:1.2; fill:none; }
+  .label{
+    font-size:12px; fill:#111; font-weight:700;
+    text-anchor:start; dominant-baseline:middle;
+    paint-order: stroke fill; stroke:#fff; stroke-width:2px; stroke-linejoin:round;
+  }
+
+  /* ===== 반응형 ===== */
+  @media (max-width: 640px){
+    .diagram{
+      width:95%; height:auto;
+      display:flex; flex-direction:column; align-items:center; padding:16px;
+    }
+    .badge, .box{
+      position:static; transform:none !important;
+      margin:10px 0; width:92%; text-align:center;
+    }
+    .badge{ font-size:22px; }
+    .box{ font-size:20px; }
+    .box.small{ font-size:18px; width:auto; height:auto; }
+    .sub{ font-size:16px; }
+    .label{ font-size:10px; stroke-width:2px; }
+    svg.edges{ display:none; } /* 모바일에서는 선 숨김 */
+  }
+</style>
+</head>
+<body>
+<div class="diagram" id="stage">
+  <!-- 헤드라인 -->
+  <div class="badge" id="std">표준화</div>
+  <div class="badge" id="cust">맞춤화</div>
+  <div class="badge" id="intent">지속적 사용 의도</div>
+  <div class="badge" id="wom">구전</div>
+
+  <!-- 내부 박스 -->
+  <div class="box" id="platform">AI 서비스 플랫폼</div>
+  <div class="box small" id="info">
+    AI 정보 품질
+    <ul class="sub"><li>· 완성도</li><li>· 정확성</li><li>· 구성</li></ul>
+  </div>
+  <div class="box small" id="system">
+    AI 시스템 품질
+    <ul class="sub"><li>· 신뢰도</li><li>· 융통성</li><li>· 시기적절함</li></ul>
+  </div>
+  <div class="box" id="recommend">AI 추천 품질</div>
+  <div class="box" id="satisfaction">AI 서비스 만족</div>
+
+  <!-- SVG 연결선 -->
+  <svg class="edges">
+    <defs>
+      <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+        <path d="M0,0 L0,6 L9,3 z" fill="#444"></path>
+      </marker>
+    </defs>
+
+    <!-- H1~H5 (직선 path) -->
+    <g class="edge-group" data-from="info" data-to="recommend" data-label="H1" data-mode="RL">
+      <path class="edge" marker-end="url(#arrow)"/><text class="label"/></g>
+    <g class="edge-group" data-from="system" data-to="recommend" data-label="H2" data-mode="RL">
+      <path class="edge" marker-end="url(#arrow)"/><text class="label"/></g>
+    <g class="edge-group" id="edge-h3" data-from="recommend" data-to="satisfaction" data-label="H3" data-mode="RL">
+      <path class="edge" marker-end="url(#arrow)"/><text class="label"/></g>
+    <g class="edge-group" id="edge-h4" data-from="satisfaction" data-to="intent" data-label="H4" data-mode="RL">
+      <path class="edge" marker-end="url(#arrow)"/><text class="label"/></g>
+    <g class="edge-group" id="edge-h5" data-from="satisfaction" data-to="wom" data-label="H5" data-mode="RL">
+      <path class="edge" marker-end="url(#arrow)"/><text class="label"/></g>
+
+    <!-- intent -> wom (수직) -->
+    <g class="edge-group" data-from="intent" data-to="wom" data-label="" data-mode="BT-TB">
+      <path class="edge" marker-end="url(#arrow)"/><text class="label"/></g>
+
+    <!-- H7a/H7b/H7c (표준화 하단 중앙에서 출발) -->
+    <g class="edge-group" data-from="std" data-to="H3MID" data-label="H7a" data-mode="BT-TB">
+      <path class="edge" marker-end="url(#arrow)"/><text class="label"/></g>
+    <g class="edge-group" data-from="std" data-to="wom" data-label="H7b" data-mode="BT">
+      <path class="edge" marker-end="url(#arrow)"/><text class="label"/></g>
+    <g class="edge-group" data-from="std" data-to="H4MID" data-label="H7c" data-mode="BT">
+      <path class="edge" marker-end="url(#arrow)"/><text class="label"/></g>
+
+    <g class="edge-group" data-from="cust" data-to="H3MID" data-label="H8a" data-mode="TB-BT">
+      <path class="edge" marker-end="url(#arrow)"/><text class="label"/></g>
+    <g class="edge-group" data-from="cust" data-to="intent" data-label="H8b" data-mode="TB">
+      <path class="edge" marker-end="url(#arrow)"/><text class="label"/></g>
+    <g class="edge-group" data-from="cust" data-to="H5MID" data-label="H8c" data-mode="TB">
+      <path class="edge" marker-end="url(#arrow)"/><text class="label"/></g>
+  </svg>
+</div>
+
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  const svg=stage.querySelector('svg.edges');
+
+  /* ---- 좌표 유틸 ---- */
+  const rectOf=el=>el.getBoundingClientRect();
+  const stageRect=()=>stage.getBoundingClientRect();
+  function centerRight(el){const r=rectOf(el),s=stageRect();return{x:r.right-s.left,y:r.top-s.top+r.height/2};}
+  function centerLeft (el){const r=rectOf(el),s=stageRect();return{x:r.left -s.left,y:r.top-s.top+r.height/2};}
+  function centerTop  (el){const r=rectOf(el),s=stageRect();return{x:r.left -s.left+r.width/2,y:r.top-s.top};}
+  function centerBottom(el){const r=rectOf(el),s=stageRect();return{x:r.left -s.left+r.width/2,y:r.bottom-s.top};}
+  const midpoint=(p,q)=>({x:(p.x+q.x)/2,y:(p.y+q.y)/2});
+
+  /* 라벨 오프셋(겹침 방지) */
+  const labelOffset = {
+    default:{ dx:12, dy:-6 },
+    H4:     { dx:12, dy:-20 },
+    H2:     { dx:-20, dy:10 },   // H2 좌측 아래
+    H5:     { dx:-20, dy:-26 },  // H5 좌측으로만
+    H8c:    { dx:40, dy:-22 }
+  };
+
+  function setTextAt(labelEl, x, y, label){
+    const off = labelOffset[label] || labelOffset.default;
+    labelEl.setAttribute('x', x + off.dx);
+    labelEl.setAttribute('y', y + off.dy);
+  }
+
+  /* ---- 라인 그리기 (직선) ---- */
+  function draw(g){
+    const fromId=g.dataset.from,toId=g.dataset.to,label=g.dataset.label||'',mode=g.dataset.mode||'RL';
+    const fromEl=document.getElementById(fromId);
+    const pathEl=g.querySelector('path.edge');
+    const textEl=g.querySelector('text.label');
+    let p,q;
+
+    if(['H3MID','H4MID','H5MID'].includes(toId)){
+      const hx=+g.dataset.hx,hy=+g.dataset.hy;
+      if(mode==='TB') p=centerTop(fromEl);
+      else if(mode==='BT') p=centerBottom(fromEl);
+      else if(mode==='BT-TB') p=centerBottom(fromEl);
+      else if(mode==='TB-BT') p=centerTop(fromEl);
+      else p=centerRight(fromEl);
+      q={x:hx,y:hy};
+    }else{
+      const toEl=document.getElementById(toId);
+      if(mode==='TB')      { p=centerTop(fromEl);    q=centerLeft(toEl); }
+      else if(mode==='BT') { p=centerBottom(fromEl); q=centerLeft(toEl); }
+      else if(mode==='BT-TB'){ p=centerBottom(fromEl); q=centerTop(toEl); }
+      else if(mode==='TB-BT'){ p=centerTop(fromEl); q=centerBottom(toEl); }
+      else { p=centerRight(fromEl); q=centerLeft(toEl); }
+    }
+
+    const d = `M ${p.x},${p.y} L ${q.x},${q.y}`;
+    pathEl.setAttribute('d', d);
+
+    const mid = midpoint(p,q);
+    textEl.textContent = label;
+    setTextAt(textEl, mid.x, mid.y, label);
+  }
+
+  function lineMid(id){
+    const g=document.getElementById(id); if(!g) return null;
+    const path=g.querySelector('path.edge');
+    const d=path.getAttribute('d');
+    const nums = d.match(/-?\d+\.?\d*/g).map(Number);
+    const x1=nums[0],y1=nums[1], x2=nums[2],y2=nums[3];
+    return {x:(x1+x2)/2,y:(y1+y2)/2};
+  }
+
+  function updateEdges(){
+    const groups=[...svg.querySelectorAll('.edge-group')];
+    groups.forEach(g=>{
+      if(['H3MID','H4MID','H5MID'].includes(g.dataset.to)) return;
+      draw(g);
+    });
+    const H3MID=lineMid('edge-h3');
+    const H4MID=lineMid('edge-h4');
+    const H5MID=lineMid('edge-h5');
+    groups.forEach(g=>{
+      if(g.dataset.to==='H3MID'&&H3MID){g.dataset.hx=H3MID.x;g.dataset.hy=H3MID.y;draw(g);}
+      if(g.dataset.to==='H4MID'&&H4MID){g.dataset.hx=H4MID.x;g.dataset.hy=H4MID.y;draw(g);}
+      if(g.dataset.to==='H5MID'&&H5MID){g.dataset.hx=H5MID.x;g.dataset.hy=H5MID.y;draw(g);}
+    });
+  }
+
+  window.addEventListener('load',updateEdges);
+  window.addEventListener('resize',updateEdges);
+  document.fonts && document.fonts.ready.then(updateEdges);
+})();
+</script>
+</body>
+</html>
