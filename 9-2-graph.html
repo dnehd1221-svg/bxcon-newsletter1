@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>상호작용 그래프 (교차점 수정 최종본)</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px 0;
+        font-family: 'Pretendard', sans-serif;
+        background-color: #ffffff;
+        box-sizing: border-box;
+    }
+    .interaction-plot-container {
+        display: flex;
+        gap: 40px;
+        width: 100%;
+        max-width: 800px;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        color: #000000;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        box-sizing: border-box;
+    }
+    .plot-section {
+        flex: 1;
+        min-width: 0;
+    }
+    .plot-section .title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .graph-svg {
+        width: 100%;
+        height: auto;
+        font-family: 'Pretendard', sans-serif;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            height: auto;
+        }
+        .interaction-plot-container {
+            flex-direction: column;
+            width: 90%;
+            gap: 0;
+        }
+        .plot-section {
+            width: 100%;
+        }
+        .plot-section:first-child {
+            margin-bottom: 20px;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="interaction-plot-container">
+        <div class="plot-section">
+            <div class="title">표준화의 역할</div>
+            <svg class="graph-svg" viewBox="0 0 300 250">
+                <text x="10" y="110" font-size="14" text-anchor="middle" writing-mode="vertical-rl">긍정 구전</text>
+                <text x="175" y="245" font-size="14" text-anchor="middle">고객 만족</text>
+                <line x1="40" y1="20" x2="40" y2="220" stroke="#000" stroke-width="1.5" />
+                <line x1="40" y1="220" x2="280" y2="220" stroke="#000" stroke-width="1.5" />
+                
+                <line x1="50" y1="180" x2="270" y2="100" stroke="#AECBFA" stroke-width="2.5" />
+                <line x1="50" y1="210" x2="270" y2="20" stroke="#005A9C" stroke-width="2.5" />
+                
+                <text x="215" y="90" font-size="13">낮은 표준화</text>
+                <text x="215" y="10" font-size="13">높은 표준화</text>
+            </svg>
+        </div>
+        <div class="plot-section">
+            <div class="title">맞춤화의 역할</div>
+             <svg class="graph-svg" viewBox="0 0 300 250">
+                <text x="10" y="110" font-size="14" text-anchor="middle" writing-mode="vertical-rl">지속적 사용 의도</text>
+                <text x="175" y="245" font-size="14" text-anchor="middle">고객 만족</text>
+                <line x1="40" y1="20" x2="40" y2="220" stroke="#000" stroke-width="1.5" />
+                <line x1="40" y1="220" x2="280" y2="220" stroke="#000" stroke-width="1.5" />
+
+                <line x1="50" y1="180" x2="270" y2="100" stroke="#AECBFA" stroke-width="2.5" />
+                <line x1="50" y1="210" x2="270" y2="20" stroke="#005A9C" stroke-width="2.5" />
+
+                <text x="215" y="90" font-size="13">낮은 맞춤화</text>
+                <text x="215" y="10" font-size="13">높은 맞춤화</text>
+            </svg>
+        </div>
+    </div>
+</body>
+</html>
