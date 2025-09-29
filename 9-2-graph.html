@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>상호작용 그래프 (최종 완성본)</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        height: 100vh;
+        margin: 0;
+        font-family: 'Pretendard', sans-serif;
+        background-color: #f0f2f5;
+    }
+    .interaction-plot-container {
+        display: flex;
+        gap: 40px;
+        width: 800px;
+        height: 340px;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        color: #000000;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .plot-section {
+        position: relative;
+        flex: 1;
+        height: 100%;
+    }
+    .plot-section .title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    .plot-section .y-label {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        font-size: 15px;
+        text-align: center;
+        line-height: 1.1; /* 글자 간격 수정 */
+    }
+    .plot-section .x-label {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 15px;
+    }
+    .plot-section .plot-area {
+        position: absolute;
+        bottom: 25px;
+        left: 40px;
+        right: 10px;
+        top: 60px;
+        border-left: 2px solid #000000;
+        border-bottom: 2px solid #000000;
+    }
+    .plot-section .line {
+        position: absolute;
+        transform-origin: left bottom;
+        height: 3px;
+    }
+    .plot-section .line-label {
+        position: absolute;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+</style>
+</head>
+<body>
+    <div class="interaction-plot-container">
+        <div class="plot-section">
+            <div class="title">표준화의 역할</div>
+            <div class="y-label">긍<br>정<br>구<br>전</div>
+            <div class="plot-area">
+                <div class="x-label">고객 만족</div>
+                <div class="line" style="width: 220px; background-color: #005A9C; transform: rotate(-45deg); bottom: 30px; left: 0px;"></div>
+                <div class="line" style="width: 230px; background-color: #AECBFA; transform: rotate(-18deg); bottom: 80px; left: 0px;"></div>
+                <div class="line-label" style="top: 40px; left: 165px;">높은 표준화</div>
+                <div class="line-label" style="top: 85px; left: 225px;">낮은 표준화</div>
+            </div>
+        </div>
+        <div class="plot-section">
+            <div class="title">맞춤화의 역할</div>
+            <div class="y-label">지<br>속<br>적<br><br>사<br>용<br><br>의<br>도</div>
+            <div class="plot-area">
+                <div class="x-label">고객 만족</div>
+                <div class="line" style="width: 220px; background-color: #005A9C; transform: rotate(-45deg); bottom: 30px; left: 0px;"></div>
+                <div class="line" style="width: 230px; background-color: #AECBFA; transform: rotate(-18deg); bottom: 80px; left: 0px;"></div>
+                <div class="line-label" style="top: 40px; left: 165px;">높은 맞춤화</div>
+                <div class="line-label" style="top: 85px; left: 225px;">낮은 맞춤화</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
