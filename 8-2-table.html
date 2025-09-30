@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCX 측정 항목</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+            font-size: 16px;
+        }
+        .table-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+            line-height: 1.6;
+            word-break: keep-all; 
+        }
+        thead th {
+            background-color: #eaf3f9; 
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        td:first-child {
+            font-weight: 600;
+            color: #111;
+            background-color: #eaf3f9; 
+        }
+
+        /* --- 모바일 반응형 스타일 --- */
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            table {
+                border: none;
+                border-radius: 0;
+            }
+            thead {
+                display: none;
+            }
+            tr {
+                display: block;
+                margin-bottom: 20px;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 10px;
+            }
+            td {
+                display: block;
+                text-align: left;
+                border-bottom: none;
+                padding: 8px 5px;
+                padding-left: 20px; /* [추가] 내용 들여쓰기 공간 확보 */
+            }
+            td:first-child {
+                background-color: transparent;
+                font-size: 1.2em;
+                text-align: left;
+                border-radius: 0;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #e0e0e0;
+                margin-bottom: 10px;
+                padding-left: 5px; /* 제목은 들여쓰기 최소화 */
+            }
+            tbody tr td:last-of-type {
+                border-bottom: none;
+            }
+            td::before {
+                content: attr(data-label);
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #555;
+                margin-left: -15px; /* [추가] 제목만 다시 왼쪽으로 당겨오기 */
+            }
+            td:first-child::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>요인</th>
+                    <th>개념</th>
+                    <th>측정 항목</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="요인">소셜 커뮤니케이션</td>
+                    <td data-label="개념">고객이 다양한 채널에서 습득한 정보의 신뢰성</td>
+                    <td data-label="측정 항목">다양한 채널에서 제공되는 정보(리뷰, 콘텐츠, 설명)에 대하여 소비자가 인식하는 신뢰 정도</td>
+                </tr>
+                <tr>
+                    <td data-label="요인">가치</td>
+                    <td data-label="개념">고객이 인식하는 제품 및 가격에 관한 매력도</td>
+                    <td data-label="측정 항목">다양한 채널에서 소비자가 종합적으로 인식하는 제품-가격 제안의 질과 매력 정도</td>
+                </tr>
+                <tr>
+                    <td data-label="요인">개인화</td>
+                    <td data-label="개념">개인의 상황에 맞춘 맞춤형 경험 여부</td>
+                    <td data-label="측정 항목">다양한 채널에서 제공하는 맞춤형 추천/프로모션의 적절성 정도</td>
+                </tr>
+                <tr>
+                    <td data-label="요인">고객 서비스</td>
+                    <td data-label="개념">고객 여정의 모든 단계에서의 지원 및 고객 서비스의 질</td>
+                    <td data-label="측정 항목">다양한 채널의 상담 대응 속도, 직원 전문성, 문제 해결 능력 등에 대한 고객의 평가 수준</td>
+                </tr>
+                <tr>
+                    <td data-label="요인">일관성</td>
+                    <td data-label="개념">채널 간 정보 및 커뮤니케이션의 일관성</td>
+                    <td data-label="측정 항목">온오프라인 간 제품 정보, 응대, 커뮤니케이션의 일관성 정도</td>
+                </tr>
+                <tr>
+                    <td data-label="요인">정보 보안</td>
+                    <td data-label="개념">개인정보 보호에 대한 신뢰도</td>
+                    <td data-label="측정 항목">다양한 채널의 정보 보안성에 대한 소비자 신뢰 정도</td>
+                </tr>
+                <tr>
+                    <td data-label="요인">배송</td>
+                    <td data-label="개념">배송 서비스에 대한 고객 평가</td>
+                    <td data-label="측정 항목">배송 서비스에 대한 품질(속도, 시간, 정확성) 지각 정도</td>
+                </tr>
+                <tr>
+                    <td data-label="요인">반품</td>
+                    <td data-label="개념">반품 및 교환 과정의 용이성</td>
+                    <td data-label="측정 항목">절차의 명확성, 간단함, 유연성 정도</td>
+                </tr>
+                <tr>
+                    <td data-label="요인">로열티 프로그램</td>
+                    <td data-label="개념">채널 전반에서 사용 가능한 리워드/멤버십 시스템에 대한 고객의 평가</td>
+                    <td data-label="측정 항목">포인트 적립 용이성, 채널 간 사용 편의성 및 활용성 정도</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script>
+(function(){
+  function postSize(){
+    var h = Math.max(
+      document.documentElement ? document.documentElement.scrollHeight : 0,
+      document.body ? document.body.scrollHeight : 0
+    );
+    window.parent && window.parent.postMessage({ type:'embed-size', height:h }, '*');
+  }
+  window.addEventListener('load', postSize);
+  window.addEventListener('resize', postSize);
+  document.addEventListener('DOMContentLoaded', postSize);
+  if('ResizeObserver' in window){
+    try{ new ResizeObserver(postSize).observe(document.body); }catch(_){}
+  }
+  window.addEventListener('message', function(e){
+    if((e.data||{}).type === 'ping-embed-size') postSize();
+  });
+  setTimeout(postSize, 200);
+  setTimeout(postSize, 800);
+})();
+</script>
+</body>
+</html>
